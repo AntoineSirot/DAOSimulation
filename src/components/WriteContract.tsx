@@ -3,12 +3,12 @@
 import { BaseError } from 'viem'
 import { useContractWrite, useWaitForTransaction } from 'wagmi'
 
-import { wagmiContractConfig } from './contracts'
+import { DAOSimulationContract } from './contracts'
 import { stringify } from '../utils/stringify'
 
 export function WriteContract() {
   const { write, data, error, isLoading, isError } = useContractWrite({
-    ...wagmiContractConfig,
+    ...DAOSimulationContract,
     functionName: 'mint',
   })
   const {
