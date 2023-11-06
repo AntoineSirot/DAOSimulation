@@ -1,13 +1,18 @@
 import { getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { configureChains, createConfig } from 'wagmi'
-import { sepolia, mainnet } from 'wagmi/chains'
+import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { goerli, mainnet } from 'wagmi/chains'
+import { sepolia } from '@wagmi/core'
 import { publicProvider } from 'wagmi/providers/public'
 
-const walletConnectProjectId = '12'
+const walletConnectProjectId = '1cdc06fbcacd080a827fe5861d62ef05'
+
+console.log("APIKEY: ", process.env.ALCHEMY_KEY);
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet, ...(process.env.NODE_ENV === 'development' ? [sepolia] : [])],
+  [mainnet, goerli, sepolia],
   [
+    alchemyProvider({ apiKey: "-cCDtdbrAuIjJnuKH242CFz4xnp-Kc9W" }),
     publicProvider(),
   ],
 )
